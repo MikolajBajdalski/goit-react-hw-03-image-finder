@@ -13,6 +13,7 @@ class ImageGallery extends Component {
         'https://pixabay.com/api/?q=cat&page=1&key=39482556-d60da0ad7dc5ab6f886d79ae4&image_type=photo&orientation=horizontal&per_page=12'
       );
       const data = await response.json();
+      console.log(data);
       this.setState({ images: data.hits });
     } catch (error) {
       console.error('Błąd: ', error);
