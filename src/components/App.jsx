@@ -14,6 +14,7 @@ class App extends Component {
 
   fetchImages = async query => {
     try {
+      this.setState({ isLoading: true });
       const { searchQuery, currentPage } = this.state;
 
       if (searchQuery !== query) {
@@ -29,6 +30,7 @@ class App extends Component {
         images: [...prevState.images, ...data.hits],
         currentPage: prevState.currentPage + 1,
       }));
+      this.setState({ isLoading: false });
     } catch (error) {
       console.error('Błąd: ', error);
     }
