@@ -3,6 +3,7 @@ import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Button from './Button/Button';
 import Loader from './Loader/Loader';
+import Modal from './Modal/Modal';
 
 class App extends Component {
   state = {
@@ -10,6 +11,7 @@ class App extends Component {
     currentPage: 1,
     searchQuery: '',
     isLoading: false,
+    selectedImage: null,
   };
 
   fetchImages = async query => {
@@ -43,13 +45,28 @@ class App extends Component {
     this.setState({ isLoading: false });
   };
 
+  openModal = image => {
+    this.setState({ selectedImage: image });
+  };
+
+  closeModal = () => {
+    this.setState({ selectedImage: null });
+  };
+
   render() {
-    const { images, isLoading } = this.state;
+    const { images, isLoading, selectedImage } = this.state;
     return (
       <>
         <Searchbar onSubmit={this.fetchImages} />
-        <ImageGallery images={images} />
+        <ImageGallery images={images} onImageClick={this.openModal} />
         {images.length > 0 && <Button onClick={this.loadMoreImages} />}
+        {selectedImage && (
+          <Modal
+            imageUrl={selectedImage.largeImageURL}
+            alt={selectedImage.tags}
+            onClose={this.closeModal}
+          />
+        )}
         <Loader isVisible={isLoading} />
       </>
     );
