@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import styles from './Modal.module.css';
 
 class Modal extends Component {
+  handleImageLoad = () => {
+    this.props.onImageLoaded();
+  };
+
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyDown);
   }
@@ -28,7 +32,7 @@ class Modal extends Component {
     return (
       <div className={styles.overlay} onClick={this.handleBackdropClick}>
         <div className={styles.modal}>
-          <img src={imageUrl} alt={alt} />
+          <img src={imageUrl} alt={alt} onLoad={this.handleImageLoad} />
         </div>
       </div>
     );

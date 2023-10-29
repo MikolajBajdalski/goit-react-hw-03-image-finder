@@ -45,8 +45,8 @@ class App extends Component {
     this.setState({ isLoading: false });
   };
 
-  openModal = image => {
-    this.setState({ selectedImage: image });
+  openModal = (image, onImageLoaded) => {
+    this.setState({ selectedImage: image, onImageLoaded });
   };
 
   closeModal = () => {
@@ -65,6 +65,7 @@ class App extends Component {
             imageUrl={selectedImage.largeImageURL}
             alt={selectedImage.tags}
             onClose={this.closeModal}
+            onImageLoaded={this.state.onImageLoaded}
           />
         )}
         <Loader isVisible={isLoading} />
