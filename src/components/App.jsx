@@ -8,6 +8,7 @@ class App extends Component {
     images: [],
     currentPage: 1,
     searchQuery: '',
+    isLoading: false,
   };
 
   fetchImages = async query => {
@@ -32,18 +33,25 @@ class App extends Component {
     }
   };
 
-  loadMoreImages = () => {
+  loadMoreImages = async () => {
     const { searchQuery } = this.state;
-    this.fetchImages(searchQuery);
+
+    this.setState({ isLoading: true });
+    await this.fetchImages(searchQuery);
+    setTimeout(() => {
+      this.setState({ isLoading: false });
+    }, 5000);
   };
 
   render() {
-    const { images } = this.state;
+    const { images, isLoading } = this.state;
     return (
       <>
         <Searchbar onSubmit={this.fetchImages} />
         <ImageGallery images={images} />
-        {images.length > 0 && <Button onClick={this.loadMoreImages} />}
+        {images.length > 0 && (
+          <Button onClick={this.loadMoreImages} isLoading={isLoading} />
+        )}
       </>
     );
   }

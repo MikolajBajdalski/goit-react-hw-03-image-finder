@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from './Button.module.css';
+import Loader from '../Loader/Loader';
 
 class Button extends Component {
   handleClick = e => {
@@ -7,11 +8,16 @@ class Button extends Component {
     onClick && onClick(e);
   };
   render() {
+    const { isLoading } = this.props;
     return (
       <div className={styles.buttonContainer}>
-        <button className={styles.button} onClick={this.handleClick}>
-          <span>Load More</span>
-        </button>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <button className={styles.button} onClick={this.handleClick}>
+            <span>Load More</span>
+          </button>
+        )}
       </div>
     );
   }
