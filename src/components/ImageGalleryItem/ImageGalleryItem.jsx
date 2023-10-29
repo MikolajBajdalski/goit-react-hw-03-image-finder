@@ -4,6 +4,7 @@ import styles from './ImageGalleryItem.module.css';
 class ImageGalleryItem extends Component {
   render() {
     const { image } = this.props;
+
     return (
       <li className={styles.imageGalleryItem}>
         <img

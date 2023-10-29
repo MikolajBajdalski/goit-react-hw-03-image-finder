@@ -3,7 +3,8 @@ import styles from './Button.module.css';
 
 class Button extends Component {
   handleClick = e => {
-    console.log('Hello');
+    const { onClick } = this.props;
+    onClick && onClick(e);
   };
   render() {
     return (
