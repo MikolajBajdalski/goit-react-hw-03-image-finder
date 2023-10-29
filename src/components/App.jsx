@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Button from './Button/Button';
+import Loader from './Loader/Loader';
 
 class App extends Component {
   state = {
@@ -44,6 +45,7 @@ class App extends Component {
         <Searchbar onSubmit={this.fetchImages} />
         <ImageGallery images={images} />
         {images.length > 0 && <Button onClick={this.loadMoreImages} />}
+        <Loader />
       </>
     );
   }
