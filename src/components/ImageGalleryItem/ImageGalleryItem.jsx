@@ -8,8 +8,8 @@ class ImageGalleryItem extends Component {
   };
 
   handleClick = () => {
-    this.setState({ isLoading: true });
     const { onImageClick, image } = this.props;
+    this.setState({ isLoading: true });
     onImageClick(image, this.handleImageLoaded);
   };
 

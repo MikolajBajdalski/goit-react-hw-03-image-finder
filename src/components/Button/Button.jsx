@@ -2,14 +2,10 @@ import React, { Component } from 'react';
 import styles from './Button.module.css';
 
 class Button extends Component {
-  handleClick = e => {
-    const { onClick } = this.props;
-    onClick && onClick(e);
-  };
   render() {
     return (
       <div className={styles.buttonContainer}>
-        <button className={styles.button} onClick={this.handleClick}>
+        <button className={styles.button} onClick={this.props.onClick}>
           <span>Load More</span>
         </button>
       </div>
